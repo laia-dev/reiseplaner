@@ -1,16 +1,23 @@
+# Enthält das Datenbankmodell für Benutzer
+# E-Mail und Passwort werden gespeichert
+# Passwörter werden sicher gehasht -> bcrypt via werkzeug.security
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# Initialisiert die SQLAlchemy-Datenbankinstanz
 db = SQLAlchemy()
 
+# Datenbankmodell für Benutzer: beinhaltet ID als Primärschlüssel, eindeutige E-Mail-Adresse sowie Passwort-Hash (verschlüsselt)
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
 
+# Speichert ein Passwort sicher verschlüsselt und nutzt generate_password_hash() aus werkzeug
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
+# Überprüft ein eingegebenes Passwort mit dem gespeicherten Hash
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
