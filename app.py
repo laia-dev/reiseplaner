@@ -4,13 +4,18 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from models import db, User
 import os
 
+# Flask-App Setup & Konfiguration: erstellt die Flask-Anwendung und definiert globale Einstellungen -> der SECRET_KEY wird für sichere Sessions und Login verwendet
+# Die SQLite-Datenbank "reiseplaner.db" speichert Benutzer- und Reisedaten
 app = Flask(__name__)
+# Sicherheitsschlüssel für Session-Verwaltung und Login
 app.config['SECRET_KEY'] = 'geheim123'
+# Datenbank-Konfiguration: Lokale SQLite-Datenbank für dieses Projekt
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///reiseplaner.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+# Flask-Login Setup: der LoginManager verwaltet den Login-Status der Benutzer -> user_loader lädt den Benutzer aus der Datenbank anhand seiner ID
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
@@ -19,10 +24,12 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Startseite: diese Route ist öffentlich und zeigt die Begrüßungsseite
 @app.route("/")
 def home():
     return render_template("base.html")
 
+# Benutzerregistrierung: diese Route zeigt das Registrierungsformular (GET) und verarbeitet neue Benutzeranmeldungen (POST) -> bei erfolgreicher Registrierung wird der User gespeichert & zur Login-Seite weitergeleitet
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -45,6 +52,7 @@ def register():
 
     return render_template("register.html")
 
+# Login-Route: verarbeitet das Login-Formular -> wenn E-Mail und Passwort korrekt sind -> Login & Weiterleitung zur Startseite
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -62,6 +70,7 @@ def login():
 
     return render_template("login.html")
 
+# Logout-Route: nur für eingeloggte Benutzer -> meldet Benutzer ab und leitet zur Login-Seite
 @app.route("/logout")
 @login_required
 def logout():
@@ -69,10 +78,13 @@ def logout():
     flash("Du wurdest erfolgreich ausgeloggt.")
     return redirect(url_for("login"))
 
+# Geschützte Benutzerseite: Mein Reiseplan: diese Route darf nur aufgerufen werden, wenn der Nutzer eingeloggt ist -> zeigt persönliche Reisedaten oder Eingabeformular
 @app.route("/mein-reiseplan")
 @login_required
 def mein_reiseplan():
     return "Das ist dein geschützter Reiseplan"
+
+# Startpunkt der Anwendung
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
