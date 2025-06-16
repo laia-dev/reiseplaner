@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from models import db, User
+from models import db, User, Reise
 import os
 
 # Flask-App Setup & Konfiguration: erstellt die Flask-Anwendung und definiert globale Einstellungen -> der SECRET_KEY wird für sichere Sessions und Login verwendet
