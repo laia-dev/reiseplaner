@@ -15,14 +15,6 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(256), nullable=False)
     reisen = db.relationship('Reise', backref='benutzer', lazy=True) # Beziehung: ein Benutzer kann mehrere Reisen haben -> mit backref='benutzer' kann man später von einer Reise aus auf den Benutzer zugreifen
 
-# Modell für eine Reiseplanung pro Benutzer
-class Reise(db.Model):
-    id = db.Column(db.Integer, primary_key=True) # Eindeutige ID
-    zielort = db.Column(db.String(100), nullable=False) # Name des Reiseziels
-    datum = db.Column(db.String(50)) # Reisedatum
-    notiz = db.Column(db.Text) # Weitere Hinweise oder Planungsdetails
-    benutzer_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Verknüpfung zum Benutzer
-
 # Speichert ein Passwort sicher verschlüsselt und nutzt generate_password_hash() aus werkzeug
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -30,3 +22,11 @@ class Reise(db.Model):
 # Überprüft ein eingegebenes Passwort mit dem gespeicherten Hash
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+# Modell für eine Reiseplanung pro Benutzer
+class Reise(db.Model):
+    id = db.Column(db.Integer, primary_key=True) # Eindeutige ID
+    zielort = db.Column(db.String(100), nullable=False) # Name des Reiseziels
+    datum = db.Column(db.String(50)) # Reisedatum
+    notiz = db.Column(db.Text) # Weitere Hinweise oder Planungsdetails
+    benutzer_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Verknüpfung zum Benutzer

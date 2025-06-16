@@ -27,7 +27,7 @@ def load_user(user_id):
 # Startseite: diese Route ist öffentlich und zeigt die Begrüßungsseite
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("home.html")
 
 # Benutzerregistrierung: diese Route zeigt das Registrierungsformular (GET) und verarbeitet neue Benutzeranmeldungen (POST) -> bei erfolgreicher Registrierung wird der User gespeichert & zur Login-Seite weitergeleitet
 @app.route("/register", methods=["GET", "POST"])
@@ -83,6 +83,24 @@ def logout():
 @login_required
 def mein_reiseplan():
     return "Das ist dein geschützter Reiseplan"
+
+# Route für Reiseformular: verarbeitet neue Reisen und speichert sie für den eingeloggten Benutzer
+@app.route("/reise-hinzufuegen", methods=["GET", "POST"])
+@login_required
+def reise_hinzufuegen():
+    if request.method == "POST":
+        zielort = request.form["zielort"]
+        datum = request.form["datum"]
+        notiz = request.form["notiz"]
+
+        neue_reise = Reise(zielort=zielort, datum=datum, notiz=notiz, benutzer=current_user)
+        db.session.add(neue_reise)
+        db.session.commit()
+
+        flash("Reise wurde gespeichert!")
+        return redirect(url_for("home"))
+
+    return render_template("reiseformular.html")
 
 # Startpunkt der Anwendung
 if __name__ == "__main__":

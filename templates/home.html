@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+    <h2>Willkommen, {{ current_user.email }}!</h2>
+    <p><a href="/reise-hinzufuegen">Neue Reise hinzufügen</a></p>
+    <p><a href="/mein-reiseplan">Meine Reisen ansehen</a></p>
+    <p><a href="/logout">Logout</a></p>
+  {% else %}
+    <h2>Willkommen beim Reiseplaner!</h2>
+    <p><a href="/register">Jetzt registrieren</a> oder <a href="/login">einloggen</a></p>
+  {% endif %}
+{% endblock %}
