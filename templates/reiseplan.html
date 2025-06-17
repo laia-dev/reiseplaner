@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Meine Reisen</h2>
+  <ul>
+    {% for reise in reisen %}
+      <li>
+        <strong>Zielort:</strong> {{ reise.zielort }} |
+        <strong>Datum:</strong> {{ reise.datum }} <br>
+        <em>Notiz:</em> {{ reise.notiz }}
+      </li>
+    {% else %}
+      <p>Du hast noch keine Reisen eingetragen.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -82,18 +82,19 @@ def logout():
 @app.route("/mein-reiseplan")
 @login_required
 def mein_reiseplan():
-    return "Das ist dein geschützter Reiseplan"
+    reisen = Reise.query.filter_by(benutzer=current_user).all()
+    return render_template("reiseplan.html", reisen=reisen)
 
 # Route für Reiseformular: verarbeitet neue Reisen und speichert sie für den eingeloggten Benutzer
 @app.route("/reise-hinzufuegen", methods=["GET", "POST"])
 @login_required
 def reise_hinzufuegen():
     if request.method == "POST":
-        zielort = request.form["zielort"]
-        datum = request.form["datum"]
-        notiz = request.form["notiz"]
+        zielort = request.form.get("zielort")
+        datum = request.form.get("datum")
+        notiz = request.form.get("notiz")
 
-        neue_reise = Reise(zielort=zielort, datum=datum, notiz=notiz, benutzer=current_user)
+        neue_reise = Reise(zielort=zielort, datum=datum, notiz=notiz, benutzer_id=current_user.id)
         db.session.add(neue_reise)
         db.session.commit()
 
