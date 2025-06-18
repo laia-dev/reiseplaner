@@ -31,4 +31,5 @@ class Reise(db.Model):
     abreise = db.Column(db.String(50), nullable=False) # Enddatum der Reise
     notiz = db.Column(db.Text) # Weitere Hinweise oder Planungsdetails
     sehenswuerdigkeiten = db.Column(db.Text)
+    unterkunft = db.Column(db.String(200))
     benutzer_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Verknüpfung zum Benutzer
