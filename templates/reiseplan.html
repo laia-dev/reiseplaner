@@ -6,7 +6,8 @@
     {% for reise in reisen %}
       <li>
         <strong>Zielort:</strong> {{ reise.zielort }} |
-        <strong>Datum:</strong> {{ reise.datum }} <br>
+        <strong>Anreise:</strong> {{ reise.anreise }} |
+        <strong>Abreise:</strong> {{ reise.abreise }} <br>
         <em>Notiz:</em> {{ reise.notiz }}
         <a href="{{ url_for('reise_loeschen', reise_id=reise.id) }}">Löschen</a>
         <a href="{{ url_for('reise_bearbeiten', reise_id=reise.id) }}">Bearbeiten</a>

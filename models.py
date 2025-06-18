@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
 class Reise(db.Model):
     id = db.Column(db.Integer, primary_key=True) # Eindeutige ID
     zielort = db.Column(db.String(100), nullable=False) # Name des Reiseziels
-    datum = db.Column(db.String(50)) # Reisedatum
+    anreise = db.Column(db.String(50), nullable=False) # Startdatum der Reise
+    abreise = db.Column(db.String(50), nullable=False) # Enddatum der Reise
     notiz = db.Column(db.Text) # Weitere Hinweise oder Planungsdetails
     benutzer_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Verknüpfung zum Benutzer

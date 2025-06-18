@@ -91,10 +91,11 @@ def mein_reiseplan():
 def reise_hinzufuegen():
     if request.method == "POST":
         zielort = request.form.get("zielort")
-        datum = request.form.get("datum")
+        anreise = request.form.get("anreise")
+        abreise = request.form.get("abreise")
         notiz = request.form.get("notiz")
 
-        neue_reise = Reise(zielort=zielort, datum=datum, notiz=notiz, benutzer_id=current_user.id)
+        neue_reise = Reise(zielort=zielort, anreise=anreise, abreise=abreise, notiz=notiz, benutzer_id=current_user.id)
         db.session.add(neue_reise)
         db.session.commit()
 
@@ -130,7 +131,8 @@ def reise_bearbeiten(reise_id):
 
     if request.method == "POST":
         reise.zielort = request.form.get("zielort")
-        reise.datum = request.form.get("datum")
+        reise.anreise = request.form.get("anreise")
+        reise.abreise = request.form.get("abreise")
         reise.notiz = request.form.get("notiz")
         db.session.commit()
         flash("Reise wurde aktualisiert.")
