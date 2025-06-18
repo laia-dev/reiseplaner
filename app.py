@@ -118,6 +118,26 @@ def reise_loeschen(reise_id):
     flash("Reise wurde gelöscht.")
     return redirect(url_for('mein_reiseplan'))
 
+# Route zum Bearbeiten einer Reise: zeigt ein Formular mit bestehenden Reisedaten, speichert Änderungen in der Datenbank -> nur für eingeloggte Benutzer
+@app.route("/reise-bearbeiten/<int:reise_id>", methods=["GET", "POST"])
+@login_required
+def reise_bearbeiten(reise_id):
+    reise = Reise.query.get_or_404(reise_id)
+
+    if reise.benutzer_id != current_user.id:
+        flash("Du darfst diese Reise nicht bearbeiten.")
+        return redirect(url_for('mein_reiseplan'))
+
+    if request.method == "POST":
+        reise.zielort = request.form.get("zielort")
+        reise.datum = request.form.get("datum")
+        reise.notiz = request.form.get("notiz")
+        db.session.commit()
+        flash("Reise wurde aktualisiert.")
+        return redirect(url_for('mein_reiseplan'))
+
+    return render_template("reise_bearbeiten.html", reise=reise)
+
 # Startpunkt der Anwendung
 if __name__ == "__main__":
     with app.app_context():
