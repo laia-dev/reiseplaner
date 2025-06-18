@@ -9,6 +9,7 @@
         <strong>Anreise:</strong> {{ reise.anreise }} |
         <strong>Abreise:</strong> {{ reise.abreise }} <br>
         <em>Notiz:</em> {{ reise.notiz }}
+        <strong>Orte und Sehenswürdigkeiten für diese Reise:</strong> {{ reise.sehenswuerdigkeiten }} <br>
         <a href="{{ url_for('reise_loeschen', reise_id=reise.id) }}">Löschen</a>
         <a href="{{ url_for('reise_bearbeiten', reise_id=reise.id) }}">Bearbeiten</a>
       </li>
