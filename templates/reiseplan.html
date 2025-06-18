@@ -8,6 +8,7 @@
         <strong>Zielort:</strong> {{ reise.zielort }} |
         <strong>Datum:</strong> {{ reise.datum }} <br>
         <em>Notiz:</em> {{ reise.notiz }}
+        <a href="{{ url_for('reise_loeschen', reise_id=reise.id) }}">Löschen</a>
       </li>
     {% else %}
       <p>Du hast noch keine Reisen eingetragen.</p>

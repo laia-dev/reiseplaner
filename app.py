@@ -103,6 +103,21 @@ def reise_hinzufuegen():
 
     return render_template("reiseformular.html")
 
+# Löschen einer Reise: diese Route erlaubt es eingeloggten Benutzern, eine ihrer gespeicherten Reisen zu löschen -> vor dem Löschen wird serverseitig geprüft, ob die Reise dem eingeloggten Benutzer gehört, andernfalls wird der Zugriff verweigert
+@app.route("/reise_loeschen/<int:reise_id>")
+@login_required
+def reise_loeschen(reise_id):
+    reise = Reise.query.get_or_404(reise_id)
+
+    if reise.benutzer_id != current_user.id:
+        flash("Du darfst diese Reise nicht löschen.")
+        return redirect(url_for('mein_reiseplan'))
+
+    db.session.delete(reise)
+    db.session.commit()
+    flash("Reise wurde gelöscht.")
+    return redirect(url_for('mein_reiseplan'))
+
 # Startpunkt der Anwendung
 if __name__ == "__main__":
     with app.app_context():
