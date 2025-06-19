@@ -1,0 +1,33 @@
+/* --------------------------- Google Font: Roboto einbinden ------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* ------------------------ Grundlayout: Hintergrundfarbe, Schriftart, Grundfarben, Abstände, Überschriften ----------------------- */
+body {background-color: #f5f7fa; font-family: 'Roboto', Arial, sans-serif; color: #333; margin: 40px; line-height: 1.6;}
+
+h1, h2, h3 {color: #222; margin-bottom: 10px;}
+
+/* ---------------- Obere Hauptnavigation: Linkfarben, Hover-Effekt, Abstände (Startseite, Login, Registrierung) ---------------- */
+nav {margin-bottom: 20px;}
+
+nav a {color: #6bbad7; text-decoration: none; margin-right: 15px; font-weight: bold;}
+
+nav a:hover {color: #5aa9c5; text-decoration: none;}
+
+/* -------------------------------------------------- Formulare: Eingabefelder, Labels, Textfelder ------------------------------------------------------- */
+form label {font-size: 20p; display: block; margin-bottom: 3px; font-weight: bold;}
+
+form input[type="email"] {width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px;}
+form input[type="password"] {width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px;}
+form input[type="date"] {width: 115px; padding: 8px; margin-top: 5px; border: 1px; solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 14px;}
+form input[type="text"],
+form textarea {width: 450px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px; resize: vertical;}
+
+/* -------------------------------------------------- Buttons: Farbe, Form, Hover-Effekt ----------------------------------------------------------------- */
+button {background-color: #7ec8e3; color: white; border: none; padding: 14px 24px; font-size: 18px; border-radius: 6px; cursor: pointer; margin-top: 15px;}
+
+button:hover {background-color: #6bbad7;}
+
+/* --------------------------- Reiseliste: Darstellung einzelner Reise-Einträge im Reiseplan  --------------------------- */
+ul {list-style-type: none; padding-left: 0;}
+
+li {background-color: #fff; border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 4px;}
