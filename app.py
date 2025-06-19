@@ -96,8 +96,9 @@ def reise_hinzufuegen():
         notiz = request.form.get("notiz")
         sehenswuerdigkeiten = request.form.get("sehenswuerdigkeiten")
         unterkunft = request.form.get("unterkunft")
+        foodspots = request.form.get("foodspots")
 
-        neue_reise = Reise(zielort=zielort, anreise=anreise, abreise=abreise, notiz=notiz, sehenswuerdigkeiten=sehenswuerdigkeiten, unterkunft=unterkunft, benutzer_id=current_user.id)
+        neue_reise = Reise(zielort=zielort, anreise=anreise, abreise=abreise, notiz=notiz, sehenswuerdigkeiten=sehenswuerdigkeiten, unterkunft=unterkunft, foodspots=foodspots, benutzer_id=current_user.id)
         db.session.add(neue_reise)
         db.session.commit()
 
@@ -138,6 +139,7 @@ def reise_bearbeiten(reise_id):
         reise.notiz = request.form.get("notiz")
         reise.sehenswuerdigkeiten = request.form.get("sehenswuerdigkeiten")
         reise.unterkunft = request.form.get("unterkunft")
+        reise.foodspots = request.form.get("foodspots")
         db.session.commit()
         flash("Reise wurde aktualisiert.")
         return redirect(url_for('mein_reiseplan'))
