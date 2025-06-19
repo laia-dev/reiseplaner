@@ -5,15 +5,15 @@
   <ul>
     {% for reise in reisen %}
       <li>
-        <strong>Zielort:</strong> {{ reise.zielort }} |
-        <strong>Anreise:</strong> {{ reise.anreise }} |
+        <strong>Zielort:</strong> {{ reise.zielort }} <br>
+        <strong>Anreise:</strong> {{ reise.anreise }} <br>
         <strong>Abreise:</strong> {{ reise.abreise }} <br>
-        <em>Notiz:</em> {{ reise.notiz }}
         <strong>Packliste:</strong> {{ reise.packliste }} <br>
         <strong>Unterkunft:</strong> {{ reise.unterkunft }} <br>
         <strong>Mitreisende:</strong> {{ reise.mitreisende }} <br>
         <strong>Orte und Sehenswürdigkeiten für diese Reise:</strong> {{ reise.sehenswuerdigkeiten }} <br>
         <strong>Foodspots und Restaurants für diese Reise:</strong> {{ reise.foodspots }} <br>
+        <p><em>Notiz:</em> {{ reise.notiz }}</p>
         <a href="{{ url_for('reise_loeschen', reise_id=reise.id) }}">Löschen</a>
         <a href="{{ url_for('reise_bearbeiten', reise_id=reise.id) }}">Bearbeiten</a>
       </li>
