@@ -11,6 +11,7 @@
         <em>Notiz:</em> {{ reise.notiz }}
         <strong>Packliste:</strong> {{ reise.packliste }} <br>
         <strong>Unterkunft:</strong> {{ reise.unterkunft }} <br>
+        <strong>Mitreisende:</strong> {{ reise.mitreisende }} <br>
         <strong>Orte und Sehenswürdigkeiten für diese Reise:</strong> {{ reise.sehenswuerdigkeiten }} <br>
         <strong>Foodspots und Restaurants für diese Reise:</strong> {{ reise.foodspots }} <br>
         <a href="{{ url_for('reise_loeschen', reise_id=reise.id) }}">Löschen</a>

@@ -34,4 +34,5 @@ class Reise(db.Model):
     unterkunft = db.Column(db.String(200))
     foodspots = db.Column(db.Text)
     packliste = db.Column(db.Text)
+    mitreisende = db.Column(db.String(200))
     benutzer_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Verknüpfung zum Benutzer
