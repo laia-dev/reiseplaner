@@ -31,3 +31,13 @@ button:hover {background-color: #6bbad7;}
 ul {list-style-type: none; padding-left: 0;}
 
 li {background-color: #fff; border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 4px;}
+
+/* ----------------------- Startseiten-Links als Buttons (Neue Reise hinzufügen, Meine Reisen ansehen, Logout) ----------------------- */
+.button-link {display: inline-block; background-color: #7ec8e3; color: white; padding: 14px 24px; font-size: 18px; border-radius: 6px; cursor: pointer; text-decoration: none; margin: 8px 10px 8px 0;}
+
+.button-link:hover {background-color: #6bbad7;}
+
+/* ----------------------- Reiseliste-Aktionslinks (Löschen, Bearbeiten) ----------------------- */
+.action-link {display: inline-block; background-color: #7ec8e3; color: white; padding: 6px 14px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer; text-decoration: none; margin: 6px 6px 0 0;}}
+
+.action-link:hover {background-color: #6bbad7;}}
