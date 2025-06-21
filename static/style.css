@@ -16,11 +16,10 @@ nav a:hover {color: #5aa9c5; text-decoration: none;}
 /* -------------------------------------------------- Formulare: Eingabefelder, Labels, Textfelder ------------------------------------------------------- */
 form label {font-size: 20p; display: block; margin-bottom: 3px; font-weight: bold;}
 
-form input[type="email"] {width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px;}
-form input[type="password"] {width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px;}
+.form-input {width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px;}
 form input[type="date"] {width: 115px; padding: 8px; margin-top: 5px; border: 1px; solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 14px;}
-form input[type="text"],
 form textarea {width: 450px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px; resize: vertical;}
+form .reise-input {width: 450px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 16px; resize: vertical;}
 
 /* -------------------------------------------------- Buttons: Farbe, Form, Hover-Effekt ----------------------------------------------------------------- */
 button {background-color: #7ec8e3; color: white; border: none; padding: 14px 24px; font-size: 18px; border-radius: 6px; cursor: pointer; margin-top: 15px;}
@@ -41,5 +40,3 @@ li {background-color: #fff; border: 1px solid #ddd; padding: 12px; margin-bottom
 .action-link {display: inline-block; background-color: #7ec8e3; color: white; padding: 6px 14px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer; text-decoration: none; margin: 6px 6px 0 0;}}
 
 .action-link:hover {background-color: #6bbad7;}}
-
-

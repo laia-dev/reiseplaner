@@ -11,6 +11,7 @@ db = SQLAlchemy()
 # Datenbankmodell für Benutzer: beinhaltet ID als Primärschlüssel, eindeutige E-Mail-Adresse sowie Passwort-Hash (verschlüsselt)
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
     reisen = db.relationship('Reise', backref='benutzer', lazy=True) # Beziehung: ein Benutzer kann mehrere Reisen haben -> mit backref='benutzer' kann man später von einer Reise aus auf den Benutzer zugreifen

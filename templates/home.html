@@ -2,13 +2,13 @@
 
 {% block content %}
   {% if current_user.is_authenticated %}
-    <h2>Willkommen, {{ current_user.email }}!</h2>
+    <h2>Welche Reise steht an, {{ current_user.name }}?</h2>
     <p><a href="/reise-hinzufuegen" class="button-link">Neue Reise hinzufügen</a></p>
     <p><a href="/mein-reiseplan" class="button-link">Meine Reisen ansehen</a></p>
     <p><a href="/logout" class="button-link">Logout</a></p>
   {% else %}
     <h2>Willkommen beim Reiseplaner!</h2>
     <p><a href="/register" class="button-link">Jetzt registrieren</a>
-       <a href="/login" class="button-link">einloggen</a></p>
+       <a href="/login" class="button-link">Einloggen</a></p>
   {% endif %}
 {% endblock %}

@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-# Flask-Login Setup: der LoginManager verwaltet den Login-Status der Benutzer -> user_loader lädt den Benutzer aus der Datenbank anhand seiner ID
+# Flask-Login Setup
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
@@ -29,10 +29,11 @@ def load_user(user_id):
 def home():
     return render_template("home.html")
 
-# Benutzerregistrierung: diese Route zeigt das Registrierungsformular (GET) und verarbeitet neue Benutzeranmeldungen (POST) -> bei erfolgreicher Registrierung wird der User gespeichert & zur Login-Seite weitergeleitet
+# Benutzerregistrierung: diese Route zeigt das Registrierungsformular
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        name = request.form["name"]
         email = request.form["email"]
         password = request.form["password"]
 
@@ -41,18 +42,20 @@ def register():
             flash("E-Mail ist bereits registriert.")
             return redirect(url_for("register"))
 
-        new_user = User(email=email)
+        new_user = User(name=name, email=email)
         new_user.set_password(password)
 
         db.session.add(new_user)
         db.session.commit()
 
-        flash("Registrierung erfolgreich. Du kannst dich jetzt einloggen.")
+        login_user(new_user)
+
+        flash("Registrierung erfolgreich. Willkommen zu deinem persönlichen Reiseplaner!")
         return redirect(url_for("home"))
 
     return render_template("register.html")
 
-# Login-Route: verarbeitet das Login-Formular -> wenn E-Mail und Passwort korrekt sind -> Login & Weiterleitung zur Startseite
+# Login-Route: verarbeitet das Login-Formular
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -70,7 +73,7 @@ def login():
 
     return render_template("login.html")
 
-# Logout-Route: nur für eingeloggte Benutzer -> meldet Benutzer ab und leitet zur Login-Seite
+# Logout-Route: nur für eingeloggte Benutzer
 @app.route("/logout")
 @login_required
 def logout():
